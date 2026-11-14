@@ -70,6 +70,20 @@ footer a:hover{color:var(--amber)}
 .hubhero h2{margin:0 0 12px}
 .hubhero p{color:var(--mute);margin:14px 0 0;max-width:46ch}
 .tags.over{margin:0 0 14px}
+.hero.top{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);align-items:end;padding-block:48px 34px}
+.cta{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.btn.huge{font-size:18px;letter-spacing:.14em;padding:24px 42px;box-shadow:0 0 0 1px var(--amber),0 10px 30px #d4a54a33}
+.btn.huge:hover,.btn.huge:focus-visible{box-shadow:0 0 0 1px var(--ink),0 10px 30px #ece6d833}
+.cta .size{margin:0}
+.hubsec{border-top:0;padding-top:0}
+.hubshot{display:block;background:var(--panel);border:1px solid var(--line);padding:clamp(6px,1.2vw,14px)}
+.hubshot:hover{border-color:var(--amber)}
+.hubshot img{width:100%}
+.hubtext{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);align-items:center;margin-top:30px}
+.hubtext h2{margin:0 0 10px}
+.hubtext p{margin:0;color:var(--mute);max-width:62ch}.hubtext b{color:var(--ink)}
+@media (max-width:900px){.hero.top,.hubtext{grid-template-columns:1fr;align-items:start}}
+@media (max-width:700px){.btn.huge{display:block;width:100%;text-align:center;padding:22px 16px}.cta{align-items:stretch}}
 .btn.big{font-size:15px;padding:18px 30px;margin-top:26px}
 .size{display:block;margin-top:10px;color:var(--mute);font-size:14px}
 .phase{font:700 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin:0 0 14px}
@@ -88,25 +102,31 @@ footer a:hover{color:var(--amber)}
  <ul><li><a class="here" href="#hub">The Hub</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#install">Install</a></li><li><a href="https://github.com/ManiDeiz">GitHub</a></li><li><a href="https://manideiz.fr/">manideiz.fr</a></li></ul>
 </nav>
 
-<header class="hero">
- <div class="tags over">Standalone plugins</div>
- <h1>MPC Plugins</h1>
- <p class="lede">Made by a beatmaker, on the machine they run on. Download the Hub once: everything else installs from the MPC.</p>
- <a class="btn main big" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip">Download the Hub</a>
- <span class="size">Free · zip, 0.9 MB · MPC OS 3.10.1 or later</span>
+<header class="hero top">
+ <div>
+  <div class="tags over">Standalone plugins</div>
+  <h1>MPC Plugins</h1>
+  <p class="lede">Made by a beatmaker, on the machine they run on. Download the Hub once: everything else installs from the MPC.</p>
+ </div>
+ <div class="cta">
+  <a class="btn main huge" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip">&#11015;&nbsp; Download the Hub</a>
+  <span class="size">Free · zip, 0.9 MB · MPC OS 3.10.1 or later</span>
+ </div>
 </header>
 
-<section id="hub"><div class="hubhero">
- <a class="shot" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip" title="Download the Hub"><img src="assets/hub.png" alt="The MANI DEÏZ Hub on the MPC: each plugin with INSTALL, UPDATE or REINSTALL" width="1280" height="672"></a>
- <div>
-  <h2>The Hub</h2>
-  <div class="tags">Free · one download</div>
-  <p>Every MANI DEÏZ plugin, on the MPC screen. Touch INSTALL and it is on your drive. When a new version comes out, the Hub says so: touch UPDATE.</p>
-  <p>Over Wi-Fi or Ethernet. No computer after the first install.</p>
-  <a class="btn main big" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip">Download the Hub</a>
-  <span class="size">Zip, 0.9 MB · MPC OS 3.10.1 or later</span>
+<section id="hub" class="hubsec">
+ <a class="hubshot" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip" title="Download the Hub"><img src="assets/hub.png" alt="The MANI DEÏZ Hub on the MPC: each plugin with INSTALL, UPDATE or REINSTALL" width="1280" height="672"></a>
+ <div class="hubtext">
+  <div>
+   <h2>The Hub</h2>
+   <p>Every MANI DEÏZ plugin, on the MPC screen. Touch <b>INSTALL</b> and it is on your drive. When a new version comes out, the Hub says so: touch <b>UPDATE</b>. Over Wi-Fi or Ethernet, no computer after the first install.</p>
+  </div>
+  <div class="cta">
+   <a class="btn main huge" href="https://raw.githubusercontent.com/ManiDeiz/Hub/main/download/Mani%20Deiz%20-%20Hub.zip">&#11015;&nbsp; Download the Hub</a>
+   <span class="size">Free · zip, 0.9 MB</span>
+  </div>
  </div>
-</div></section>
+</section>
 
 <section id="install"><h2>Install</h2>
 <p class="phase">Once, on your computer</p>
