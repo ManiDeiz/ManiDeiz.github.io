@@ -1,0 +1,4 @@
+# MANI DEIZ HUB catalog - written by make_hub_catalog.py, do not edit by hand
+# id	name	tagline	version	folder	zip	bytes	sha256	keep
+mpc-master	MPC Master	A whole mastering chain on one screen.	1.0.0	MANI DEÏZ - VST - MPC Master	https://raw.githubusercontent.com/ManiDeiz/mpc-master/main/download/MPC-Master.zip	835354	d33d89d1865164a5807d04870267984a3ff56a5daf8c1db20470805c3f8f51a8
+deluxe-eq	Deluxe EQ	A 7-band EQ you play with your finger.	1.0.0	MANI DEÏZ - VST - Deluxe EQ	https://raw.githubusercontent.com/ManiDeiz/deluxe-eq/main/download/Deluxe-EQ.zip	581597	518bdf4768ff6ed3b7963fbe9d6ed1b022bc0d50551b5acbe66d34f67cd2b297
