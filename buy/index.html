@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MANI DEÏZ · Buy a drum kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#1a1916;--panel:#23211d;--line:#3a372f;--ink:#ece6d8;--mute:#9c9585;--amber:#d4a54a;--green:#8caa84;--red:#d6705c;
+--disp:"Big Shoulders Display",Impact,sans-serif;--mono:"Courier Prime","Courier New",monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--mono);padding:0 16px 48px}
+main{max-width:480px;margin:0 auto}
+header{display:flex;align-items:center;gap:12px;padding:22px 0;border-bottom:1px solid var(--line)}
+header b{font:900 26px/1 var(--disp);letter-spacing:.04em}
+header span{font:700 12px var(--mono);letter-spacing:.12em;color:var(--amber);text-transform:uppercase}
+h1{font:900 46px/1.02 var(--disp);text-transform:uppercase;margin:28px 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);padding:20px;margin:14px 0}
+.label{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.code{font:900 44px/1.1 var(--disp);letter-spacing:.08em;color:var(--amber)}
+.kit{font:900 30px/1.1 var(--disp);text-transform:uppercase}
+.mute{color:var(--mute);font-size:14px}
+.btn{display:block;width:100%;text-align:center;padding:16px;border:0;background:var(--amber);color:var(--bg);font:700 16px var(--mono);
+     letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-top:16px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+input{width:100%;padding:14px;border:1px solid var(--line);background:#11100e;color:var(--ink);font:900 34px/1 var(--disp);letter-spacing:.14em;
+      text-transform:uppercase;text-align:center}
+.ok{color:var(--green);font:900 28px/1.1 var(--disp);text-transform:uppercase}
+.err{color:var(--red)}
+ol{padding-left:20px;margin:8px 0}li{margin:4px 0}
+.hidden{display:none}
+</style>
+<main>
+  <header><b>MANI DEÏZ</b><span>Drum kits for the MPC</span></header>
+
+  <div id="wait"><h1>One moment…</h1><p class="mute">Looking for your MPC.</p></div>
+
+  <div id="buy" class="hidden">
+    <h1>Buy <span id="buyKit"></span></h1>
+    <div class="card">
+      <div class="label" id="buyHow">Your MPC (found on this network)</div>
+      <div class="code" id="buyCode"></div>
+      <p class="mute">Check it is the code shown on the MPC screen.</p>
+      <a class="btn" id="payBtn" href="#">Pay</a>
+      <p class="mute">Card, Apple Pay, Google Pay or PayPal, by Lemon Squeezy. Once paid, the MPC downloads the kit by itself: keep its window open.</p>
+    </div>
+    <a class="btn ghost" href="?c=">Not your MPC? Type its code</a>
+  </div>
+
+  <div id="paid" class="hidden">
+    <h1>Thank you</h1>
+    <div class="card">
+      <div class="ok">✓ <span id="paidKit"></span> is yours</div>
+      <p>MPC code <span class="code" id="paidCode"></span></p>
+      <p class="mute">Keep the window open on the MPC: the kit downloads and installs by itself (the MPC must be online).</p>
+    </div>
+  </div>
+
+  <div id="type" class="hidden">
+    <h1>Buy a drum kit on your MPC</h1>
+    <div class="card">
+      <ol>
+        <li>On the MPC, in the <b>MANI DEÏZ Hub</b>, tab <b>DRUM KITS</b>, touch <b>BUY</b> on a kit.</li>
+        <li>Type the code shown on the MPC screen:</li>
+      </ol>
+      <form id="form">
+        <input id="codeIn" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-123" required>
+        <button class="btn" type="submit">Continue</button>
+      </form>
+      <p class="err hidden" id="typeErr"></p>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  var API = "https://shuffledrummer.com/mpc/";
+  function $(id) { return document.getElementById(id); }
+  function show(id) { ["wait", "buy", "paid", "type"].forEach(function (k) { $(k).classList.toggle("hidden", k !== id); }); }
+  function price(p) { return p ? p.replace(".", ",") + " €" : ""; }
+  function typeForm(msg) {
+    show("type");
+    if (msg) { $("typeErr").textContent = msg; $("typeErr").classList.remove("hidden"); }
+    $("codeIn").focus();
+  }
+  function ask(code, auto) {
+    show("wait");
+    fetch(API + "?a=find" + (code ? "&c=" + encodeURIComponent(code) : ""), { credentials: "omit", cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j.found) {
+          if (j.reason === "not_asked") return typeForm("The MPC " + j.code + " has not asked for a kit yet: touch BUY on the kit in the Hub (the MPC must be online), then try again.");
+          if (j.reason === "bad_code") return typeForm("This is not a valid code: 6 letters and numbers, as on the MPC screen.");
+          return typeForm("");
+        }
+        if (j.paid) { $("paidKit").textContent = j.kit; $("paidCode").textContent = j.code; return show("paid"); }
+        $("buyKit").textContent = j.kit; $("buyCode").textContent = j.code;
+        $("buyHow").textContent = auto ? "Your MPC (found on this network)" : "MPC code";
+        $("payBtn").textContent = "Pay " + price(j.price);
+        $("payBtn").href = j.pay || "#";
+        show("buy");
+        if (auto && j.pay) location.replace(j.pay);
+      })
+      .catch(function () { typeForm("Cannot reach the shop right now. Check your connection and try again."); });
+  }
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var c = $("codeIn").value.replace(/[^0-9a-z]/gi, "").toUpperCase();
+    history.replaceState(null, "", "?c=" + c);
+    ask(c, false);
+  });
+  var q = new URLSearchParams(location.search);
+  if (q.has("c")) { var c = (q.get("c") || "").replace(/[^0-9a-z]/gi, "").toUpperCase(); if (c) ask(c, false); else typeForm(""); }
+  else ask("", true);
+})();
+</script>
