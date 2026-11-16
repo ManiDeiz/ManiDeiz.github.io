@@ -1,7 +1,6 @@
 # MANI DEIZ HUB drum kits - written by _kits/make_kits.py, do not edit by hand
 # id	name	tagline	price	key	folder	bytes	sha256	preview	sounds
 base-drums	BASE DRUMS	Dusty boom bap: the sound of Shuffle Drummer.	9.90	BASE DRUMS	BASE DRUMS	14501047	c8cddeaaace90105385b9174bdaddfc4d087fe3221ff4fd05035b34c2e5bd12e	https://manideiz.github.io/kits/base-drums.wav	100
-freaky-joe-drums	FREAKY JOE DRUMS	Hard trap kicks, claps and rolling hats.	9.90	FREAKY JOE DRUMS	FREAKY JOE DRUMS	25257637	c2bb0aad2f7d74ac488d02991cb5df6b6acdccc3f67d44888ee62a8b679fc310	https://manideiz.github.io/kits/freaky-joe-drums.wav	95
 ny-drums	NY DRUMS	New York boom bap: punchy kicks, crisp snares.	9.90	NY DRUMS	NY DRUMS	15529595	1424f6f9137f31736200296b67cd140d90c01284e37e3c8dab3f5bdd1a7727d8	https://manideiz.github.io/kits/ny-drums.wav	88
 lofi-twelve-drums	LOFI TWELVE DRUMS	Soft, worn and warm: lo-fi drums on tape.	9.90	LOFI TWELVE DRUMS	LOFI TWELVE DRUMS	16075586	8351a4ac77c551f7081803755463c9320830e1d7a290ad3f1b865f91993ab9c7	https://manideiz.github.io/kits/lofi-twelve-drums.wav	87
 mani-deiz-drums	MANI DEÏZ DRUMS	The drums of MANI DEÏZ's own beats.	9.90	MANI DEIZ DRUMS	MANI DEIZ DRUMS	5706186	073b3f19898f02f3cad4adb1756614fe480c7819aafa67fae3409d806904a427	https://manideiz.github.io/kits/mani-deiz-drums.wav	90
